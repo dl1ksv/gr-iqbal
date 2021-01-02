@@ -25,14 +25,14 @@ outputs:
     dtype: complex
 
 templates:
-    imports: from gnuradio import iqbalance
+    imports: import iqbalance
     make: iqbalance.fix_cc(${mag}, ${phase})
     callbacks:
     - set_mag(${mag})
     - set_phase(${phase})
 
 cpp_templates:
-    includes: ['#include <gnuradio/iqbalance.h>']
+    includes: ['#include <iqbalance.h>']
     declarations: 'iqbalance::fix_cc::sptr ${id};'
     make: 'this->${id} = iqbalance::fix_cc::make(${mag}, ${phase});'
     callbacks:
