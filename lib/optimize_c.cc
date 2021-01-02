@@ -23,7 +23,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include <gnuradio/iqbalance/optimize_c.h>
+#include <iqbalance/optimize_c.h>
 
 #define GCC_VERSION (			\
 		__GNUC__ * 10000 +	\

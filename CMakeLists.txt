@@ -42,11 +42,11 @@ set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE} CACHE STRING "")
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake/Modules)
 
 # Find GNURadio
-find_package(Gnuradio "3.8" REQUIRED)
+find_package(Gnuradio "3.9" REQUIRED)
 
 # Set the version information here
 set(VERSION_MAJOR 3)
-set(VERSION_API   8)
+set(VERSION_API   9)
 set(VERSION_ABI   0)
 set(VERSION_PATCH 0)
 include(GrVersion) #setup version info
@@ -156,6 +156,15 @@ if(DOXYGEN_FOUND)
 else(DOXYGEN_FOUND)
     option(ENABLE_DOXYGEN "Build docs using Doxygen" OFF)
 endif(DOXYGEN_FOUND)
+########################################################################
+# PyBind11 Related
+########################################################################
+
+find_package(pybind11 REQUIRED)
+execute_process(
+    COMMAND "${PYTHON_EXECUTABLE}" -c
+    "try:\n import numpy\n import os\n inc_path = numpy.get_include()\n if os.path.exists(os.path.join(inc_path, 'numpy', 'arrayobject.h')):\n  print(inc_path, end='')\nexcept:\n pass"
+    OUTPUT_VARIABLE PYTHON_NUMPY_INCLUDE_DIR)
 
 ########################################################################
 # Create uninstall target
@@ -172,10 +181,9 @@ add_custom_target(uninstall
 ########################################################################
 # Add subdirectories
 ########################################################################
-add_subdirectory(include/gnuradio/iqbalance)
+add_subdirectory(include/iqbalance)
 add_subdirectory(lib)
 add_subdirectory(apps)
 add_subdirectory(docs)
-add_subdirectory(swig)
 add_subdirectory(python)
 add_subdirectory(grc)

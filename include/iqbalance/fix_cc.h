@@ -22,7 +22,7 @@
 #ifndef INCLUDED_IQBALANCE_FIX_CC_H
 #define INCLUDED_IQBALANCE_FIX_CC_H
 
-#include <gnuradio/iqbalance/api.h>
+#include <iqbalance/api.h>
 #include <gnuradio/sync_block.h>
 
 namespace gr {
@@ -36,7 +36,7 @@ namespace gr {
       float d_mag, d_phase;
 
      public:
-      typedef boost::shared_ptr<fix_cc> sptr;
+      typedef std::shared_ptr<fix_cc> sptr;
 
       static sptr make(float mag=0.0f, float phase=0.0f);
 

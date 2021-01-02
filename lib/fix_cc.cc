@@ -23,7 +23,7 @@
 #endif
 
 #include <gnuradio/io_signature.h>
-#include <gnuradio/iqbalance/fix_cc.h>
+#include <iqbalance/fix_cc.h>
 
 namespace gr {
 
