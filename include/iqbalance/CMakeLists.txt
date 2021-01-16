@@ -24,5 +24,5 @@ install(FILES
     api.h
     fix_cc.h
     optimize_c.h
-    DESTINATION include/gnuradio/iqbalance
+    DESTINATION include/iqbalance
 )

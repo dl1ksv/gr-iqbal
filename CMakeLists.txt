@@ -22,7 +22,6 @@
 # Project setup
 ########################################################################
 cmake_minimum_required(VERSION 3.8)
-include(GNUInstallDirs)
 project(gr-iqbalance CXX C)
 enable_testing()
 
@@ -44,11 +43,13 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake/Modules)
 # Find GNURadio
 find_package(Gnuradio "3.9" REQUIRED)
 
+include(GrPlatform) #define LIB_SUFFIX
+
 # Set the version information here
 set(VERSION_MAJOR 3)
 set(VERSION_API   9)
 set(VERSION_ABI   0)
-set(VERSION_PATCH 0)
+set(VERSION_PATCH git)
 include(GrVersion) #setup version info
 
 ########################################################################
@@ -110,14 +111,13 @@ endif()
 ########################################################################
 # Install directories
 ########################################################################
-include(GrPlatform) #define LIB_SUFFIX
 
 if(NOT CMAKE_MODULES_DIR)
   set(CMAKE_MODULES_DIR lib${LIB_SUFFIX}/cmake)
 endif(NOT CMAKE_MODULES_DIR)
 
-set(GR_INCLUDE_DIR      include)
-set(GR_CMAKE_DIR        ${CMAKE_MODULES_DIR}/gnuradio)
+set(GR_INCLUDE_DIR      include/iqbalance)
+set(GR_CMAKE_DIR        ${CMAKE_MODULES_DIR}/iqbalance)
 set(GR_PKG_DATA_DIR     ${GR_DATA_DIR}/${CMAKE_PROJECT_NAME})
 set(GR_PKG_DOC_DIR      ${GR_DOC_DIR}/${CMAKE_PROJECT_NAME})
 set(GR_PKG_CONF_DIR     ${GR_CONF_DIR}/${CMAKE_PROJECT_NAME}/conf.d)
